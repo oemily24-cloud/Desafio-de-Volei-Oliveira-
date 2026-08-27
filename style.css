@@ -1,0 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
+
+:root {
+  --ink: #17213b;
+  --muted: #5d6780;
+  --white: #ffffff;
+  --court-blue: #087e8b;
+  --court-deep: #075985;
+  --yellow: #ffd166;
+  --pink: #ef476f;
+  --green: #06d6a0;
+  --orange: #f97316;
+  --purple: #7c3aed;
+  --shadow: 0 18px 45px rgba(23, 33, 59, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 36px 20px 48px;
+  color: var(--ink);
+  font-family: 'Nunito', 'Trebuchet MS', sans-serif;
+  text-align: center;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(255, 209, 102, 0.7) 0 9%, transparent 10%),
+    radial-gradient(circle at 90% 18%, rgba(239, 71, 111, 0.22) 0 13%, transparent 14%),
+    linear-gradient(135deg, #e0f7fa 0%, #fef3c7 48%, #fce7f3 100%);
+}
+
+h1 {
+  margin: 0 0 24px;
+  color: var(--court-deep);
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  text-shadow: 3px 3px 0 rgba(255, 209, 102, 0.85);
+}
+
+.quadra-container {
+  max-width: 720px;
+  margin: 0 auto 24px;
+  padding: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.84);
+  border: 3px solid var(--white);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.quadra {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 42px minmax(0, 1fr);
+  gap: 10px;
+  padding: 16px;
+  background:
+    linear-gradient(90deg, transparent 49.5%, rgba(255, 255, 255, 0.9) 49.5% 50.5%, transparent 50.5%),
+    linear-gradient(0deg, transparent 49.5%, rgba(255, 255, 255, 0.9) 49.5% 50.5%, transparent 50.5%),
+    linear-gradient(135deg, var(--court-blue), var(--court-deep));
+  border: 4px solid var(--white);
+  border-radius: 12px;
+}
+
+.lado-time {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.time-a { background: rgba(14, 165, 233, 0.3); }
+.time-b { background: rgba(239, 71, 111, 0.26); }
+
+.lado-time h3 {
+  grid-column: 1 / -1;
+  margin: 0 0 2px;
+  color: var(--white);
+  font-size: 1rem;
+  text-shadow: 1px 2px 0 rgba(23, 33, 59, 0.35);
+}
+
+.lado-time h3 span {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  opacity: 0.88;
+}
+
+.rede-central {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background: repeating-linear-gradient(0deg, #17213b 0 14px, #ffd166 14px 18px);
+  border: 3px solid var(--white);
+  border-radius: 7px;
+}
+
+.rede-central span {
+  align-self: center;
+  color: var(--white);
+  font-size: 0.58rem;
+  font-weight: 900;
+  writing-mode: vertical-rl;
+  text-shadow: 1px 1px 0 #17213b;
+}
+
+.bola {
+  position: absolute;
+  z-index: 3;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  line-height: 1;
+  filter: drop-shadow(0 5px 3px rgba(23, 33, 59, 0.35));
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: left 520ms cubic-bezier(0.2, 0.8, 0.3, 1), top 520ms cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.bola.voando {
+  animation: bola-salto 520ms ease-in-out;
+}
+
+@keyframes bola-salto {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -32px; }
+}
+
+.posicao {
+  min-height: 126px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 13px;
+  box-shadow: 0 5px 0 rgba(23, 33, 59, 0.16);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.posicao:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 9px 0 rgba(23, 33, 59, 0.16);
+}
+
+.posicao.ativo {
+  outline: 4px solid var(--yellow);
+  outline-offset: 3px;
+  animation: jogador-acao 520ms ease both;
+}
+
+@keyframes jogador-acao {
+  0%, 100% { transform: scale(1); }
+  45% { transform: scale(1.06) rotate(1deg); }
+}
+
+.label-pos {
+  margin-bottom: 9px;
+  color: var(--white);
+  font-size: 0.73rem;
+  font-weight: 900;
+  line-height: 1.2;
+  text-shadow: 1px 2px 0 rgba(23, 33, 59, 0.25);
+}
+
+.posicao input {
+  width: 94%;
+  min-width: 0;
+  padding: 8px 5px;
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  outline: none;
+}
+
+.posicao input:focus {
+  border-color: var(--yellow);
+  box-shadow: 0 0 0 3px rgba(255, 209, 102, 0.45);
+}
+
+.pos-1 { background: var(--green); }
+.pos-2 { background: var(--pink); }
+.pos-3 { background: var(--purple); }
+.pos-4 { background: var(--orange); }
+.pos-5 { background: #0ea5e9; }
+.pos-6 { background: #eab308; }
+
+.controles {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.78);
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(23, 33, 59, 0.1);
+}
+
+.modo-jogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.paineis-jogadores {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.painel-jogador {
+  padding: 12px 8px;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+}
+
+.jogador-1 { background: rgba(14, 165, 233, 0.16); }
+.jogador-2 { background: rgba(239, 71, 111, 0.14); }
+
+.painel-jogador h3 {
+  margin: 0 0 5px;
+  color: var(--court-deep);
+  font-size: 1rem;
+}
+
+.painel-jogador h3 span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.painel-jogador button {
+  width: calc(100% - 8px);
+  margin: 4px;
+  padding: 9px 6px;
+  font-size: 0.86rem;
+}
+
+#modo-atual {
+  color: var(--court-deep);
+  font-weight: 900;
+}
+
+.btn-modo {
+  margin: 0;
+  padding: 8px 13px;
+  font-size: 0.82rem;
+  background: var(--green);
+  box-shadow: 0 3px 0 #047857;
+}
+
+.controles p {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.controles p.pronto {
+  color: var(--court-deep);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.38;
+  filter: grayscale(0.7);
+  transform: none;
+  box-shadow: 0 2px 0 rgba(23, 33, 59, 0.25);
+}
+
+button {
+  margin: 5px 3px;
+  padding: 11px 17px;
+  color: var(--white);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+  background: var(--court-deep);
+  border: 0;
+  border-radius: 9px;
+  box-shadow: 0 4px 0 #06415f;
+  transition: transform 160ms ease, filter 160ms ease;
+}
+
+button:hover {
+  filter: brightness(1.12) saturate(1.2);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #06415f;
+}
+
+.btn-levantar { background: var(--purple); box-shadow: 0 4px 0 #4c1d95; }
+.btn-rodizio { background: var(--orange); box-shadow: 0 4px 0 #9a3412; }
+.btn-novo-jogo { background: #17213b; box-shadow: 0 4px 0 #080d1d; }
+
+#resultado,
+#placar {
+  max-width: 720px;
+  margin: 18px auto 0;
+  padding: 15px 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(23, 33, 59, 0.1);
+}
+
+#status-jogo {
+  max-width: 720px;
+  margin: 12px auto 0;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+#resultado {
+  color: var(--court-deep);
+  background: var(--white);
+  border-left: 7px solid var(--yellow);
+}
+
+#placar {
+  color: var(--white);
+  background: var(--pink);
+  border: 3px solid var(--white);
+}
+
+@media (max-width: 560px) {
+  body { padding: 24px 12px 34px; }
+  .quadra-container { padding: 10px; }
+  .quadra { grid-template-columns: minmax(0, 1fr) 24px minmax(0, 1fr); gap: 4px; padding: 5px; }
+  .lado-time { gap: 4px; padding: 5px; }
+  .lado-time h3 { font-size: 0.75rem; }
+  .lado-time h3 span { font-size: 0.52rem; }
+  .rede-central span { font-size: 0.43rem; }
+  .paineis-jogadores { gap: 6px; }
+  .painel-jogador { padding: 8px 3px; }
+  .painel-jogador h3 { font-size: 0.82rem; }
+  .painel-jogador h3 span { font-size: 0.6rem; }
+  .posicao { min-height: 108px; padding: 8px 3px; }
+  .label-pos { font-size: 0.62rem; }
+  .posicao input { font-size: 0.72rem; }
+  button { width: calc(50% - 10px); padding: 10px 5px; font-size: 0.84rem; }
+}

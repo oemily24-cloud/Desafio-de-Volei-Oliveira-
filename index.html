@@ -11,48 +11,56 @@
 <h1>🏐 Desafio do Vôlei</h1>
 
 <div class="quadra-container">
-<div class="linha-rede">REDE DE VÔLEI</div>
 <div class="quadra">
-<div class="posicao pos-4">
-<span class="label-pos">Posição 4 (Ataque Esq.)</span>
-<input type="text" id="pos4" value="Jogador 4">
-</div>
-<div class="posicao pos-3">
-<span class="label-pos">Posição 3 (Levantador / Meio)</span>
-<input type="text" id="pos3" value="Jogador 3">
-</div>
-<div class="posicao pos-2">
-<span class="label-pos">Posição 2 (Ataque Dir.)</span>
-<input type="text" id="pos2" value="Jogador 2">
-</div>
-
-<div class="posicao pos-5">
-<span class="label-pos">Posição 5 (Defesa Esq.)</span>
-<input type="text" id="pos5" value="Jogador 5">
-</div>
-<div class="posicao pos-6">
-<span class="label-pos">Posição 6 (Defesa Meio)</span>
-<input type="text" id="pos6" value="Jogador 6">
-</div>
-<div class="posicao pos-1">
-<span class="label-pos">Posição 1 (Saque)</span>
-<input type="text" id="pos1" value="Jogador 1">
-</div>
+<div class="bola" id="bola" aria-label="Bola em jogo">🏐</div>
+<section class="lado-time time-a">
+<h3>Time A <span>Você</span></h3>
+<div class="posicao pos-4"><span class="label-pos">Posição 4 · Ataque</span><input type="text" id="a-pos4" value="Jogador A4"></div>
+<div class="posicao pos-3"><span class="label-pos">Posição 3 · Levantador</span><input type="text" id="a-pos3" value="Jogador A3"></div>
+<div class="posicao pos-2"><span class="label-pos">Posição 2 · Ataque</span><input type="text" id="a-pos2" value="Jogador A2"></div>
+<div class="posicao pos-5"><span class="label-pos">Posição 5 · Defesa</span><input type="text" id="a-pos5" value="Jogador A5"></div>
+<div class="posicao pos-6"><span class="label-pos">Posição 6 · Defesa</span><input type="text" id="a-pos6" value="Jogador A6"></div>
+<div class="posicao pos-1"><span class="label-pos">Posição 1 · Saque</span><input type="text" id="a-pos1" value="Jogador A1"></div>
+</section>
+<div class="rede-central"><span>REDE</span></div>
+<section class="lado-time time-b">
+<h3>Time B <span>Adversário</span></h3>
+<div class="posicao pos-2"><span class="label-pos">Posição 2 · Ataque</span><input type="text" id="b-pos2" value="Jogador B2"></div>
+<div class="posicao pos-3"><span class="label-pos">Posição 3 · Levantador</span><input type="text" id="b-pos3" value="Jogador B3"></div>
+<div class="posicao pos-4"><span class="label-pos">Posição 4 · Ataque</span><input type="text" id="b-pos4" value="Jogador B4"></div>
+<div class="posicao pos-1"><span class="label-pos">Posição 1 · Saque</span><input type="text" id="b-pos1" value="Jogador B1"></div>
+<div class="posicao pos-6"><span class="label-pos">Posição 6 · Defesa</span><input type="text" id="b-pos6" value="Jogador B6"></div>
+<div class="posicao pos-5"><span class="label-pos">Posição 5 · Defesa</span><input type="text" id="b-pos5" value="Jogador B5"></div>
+</section>
 </div>
 </div>
 
 <div class="controles">
-<p>Escolha uma jogada:</p>
-<button onclick="sacar()">Saque</button>
-<button onclick="defender()">Defesa</button>
-<button onclick="levantar()" class="btn-levantar">Levantamento 🎯</button>
-<button onclick="atacar()">Ataque 🔥</button>
-<button onclick="bloquear()">Bloqueio</button>
-<button onclick="fazerRodizio()" class="btn-rodizio">Fazer Rodízio 🔄</button>
+<div class="modo-jogo">
+<span id="modo-atual">Modo: 1 jogador</span>
+<button id="btn-modo" onclick="alternarModo()" class="btn-modo">Jogar em dupla</button>
+</div>
+<p id="instrucao-jogada">Comece o rally com um saque.</p>
+<div class="paineis-jogadores">
+<section class="painel-jogador jogador-1">
+<h3>Jogador 1 <span>Organiza o ataque</span></h3>
+<button id="btn-saque" onclick="sacar()">🏐 Saque</button>
+<button id="btn-levantamento" onclick="levantar()" class="btn-levantar">🎯 Levantamento</button>
+<button id="btn-ataque" onclick="atacar()">🔥 Ataque</button>
+</section>
+<section class="painel-jogador jogador-2">
+<h3>Jogador 2 <span>Protege a quadra</span></h3>
+<button id="btn-defesa" onclick="defender()">👏 Defesa</button>
+<button id="btn-bloqueio" onclick="bloquear()">🛡️ Bloqueio</button>
+</section>
+</div>
+<button id="btn-rodizio" onclick="fazerRodizio()" class="btn-rodizio">Fazer Rodízio 🔄</button>
+<button id="btn-novo-jogo" onclick="novoJogo()" class="btn-novo-jogo">Novo Campeonato</button>
 </div>
 
-<h2 id="resultado">Aguardando jogada...</h2>
-<h2 id="placar">Placar: 0</h2>
+<h2 id="resultado" aria-live="polite">Aguardando jogada...</h2>
+<h2 id="placar">Set 1 | Pontos: 0 x 0 | Sets: 0 x 0</h2>
+<p id="status-jogo">A bola está pronta na posição 1. Faça o saque!</p>
 
 <script src="script.js"></script>
 </body>
